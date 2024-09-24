@@ -42,7 +42,7 @@ def get_treatments(means_filename):
     values = df.iloc[-1]
     return [column.replace(u'\xa0', u' ').strip() for _, column in sorted(zip(values, columns), reverse=True)]
 
-def get_sd_pairs(discoveries_filename, treatments):
+def get_sd_pairs(discoveries_filename, treatments: list[str]):
     df = pd.read_excel(discoveries_filename)
     df.rename(lambda col: col.replace('\xa0', ' ').strip(), axis='columns', inplace=True)
     df['Original FDR method of Benjamini and Hochberg'] = df['Original FDR method of Benjamini and Hochberg'].apply(lambda x: str(x).replace(u'\xa0', u' '))
